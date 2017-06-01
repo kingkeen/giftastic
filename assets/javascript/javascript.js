@@ -6,23 +6,24 @@ var topics = ["jalapenos", "habaneros", "beef", "chicken", "corn", "lobster"];
 //create function to render the buttons on the webpage for all the topics in the array
 
 function renderButtons() {
-	$("#topics").empty();
+	$("#topicButtons").empty();
+
 
 	for (var i=0; i< topics.length; i++) {
 		$("<button>").addClass("foods")
 		.attr("id", topics[i])
 		.text(topics[i])
 		.appendTo("#topicButtons")
-		}
+	}
 }
 
 // create event listener for clicking on the buttons
 $("#addTopic").on("click", function(event) {
 	event.preventDefault();
 
-	var newTopic = $("#addTopic").val().trim()
-	newTopic.push(topics);
-	// console.log(topics);
+	var newTopic = $("#topic-Input").val()
+	topics.push(newTopic);
+	renderButtons();
 });
 
 
@@ -30,7 +31,7 @@ $("#addTopic").on("click", function(event) {
 $(document).on('click', '.foods', function () {
 	console.log(this);
 	console.log(this.id)
-
+	var arrayOfGifDivs = [];
 
 	// creates the URL to query the API dynamically 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ this.id + "&api_key=dc6zaTOxFJmzC&LIMIT=10";
@@ -59,8 +60,8 @@ $(document).on('click', '.foods', function () {
 
       	gifDiv.prepend(p);
       	gifDiv.prepend(topicImage);
-
-      	$("#gifs-appear-here-div").prepend(gifDiv);
+      	arrayOfGifDivs.push(gifDiv)
+      	// $("#gifs-appear-here-div").prepend(gifDiv);
       }
 
 
