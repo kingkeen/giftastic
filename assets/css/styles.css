@@ -1,3 +1,15 @@
 .foods {
 	margin: 3px;
 }
+
+h1 {
+	text-align: center;
+}
+
+.center {
+	text-align: center;
+}
+
+#topic {
+	text-align: center;
+}
