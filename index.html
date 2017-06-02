@@ -17,24 +17,34 @@
 </head>
 <body>
 	<div class="jumbotron"><h1>Enter your favorite foods!</h1>
-	</div><br>
-
-
-
-	<div id="topicButtons" class="center">
 	</div>
 
-	<form id="topicForm" class="center">
-		<br><br><label form="topic-Input">Add a Topic</label>
-		<input type="text" id="topic-Input"><br>
-		<input type="submit" id="addTopic" value="Submit">
-	</form>
+	<div class="row">
 
-	<div id="topic" class="center"><br>
-		<img id="clickedTopic" src="">
-		
+		<div id="topicButtons" class="center col-md-12">
+		</div>
+
+		<form id="topicForm" class="center">
+			<br><br><label form="topic-Input">Add a Food!</label>
+			<input type="text" id="topic-Input"><br>
+			<input type="submit" id="addTopic" value="Submit">
+		</form><br>
 	</div>
-	<div id="gifs-appear"></div>
+
+	<div id="clearThis"><img src="assets/images/food.jpg"></div>
+
+	<div class="row">
+		<div class="col-md-1 sides"><br>
+			<!-- <img id="clickedTopic" src=""> -->
+		</div>
+	
+		<div id="gifs-appear" class="col-md-9">
+			
+		</div>
+	
+		<div class="col-md-1 sides"></div>
+	</div>
+	
 <script src="assets/javascript/javascript.js"></script>
 
 </body>
