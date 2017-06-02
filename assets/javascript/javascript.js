@@ -34,31 +34,39 @@ $("#addTopic").on("click", function(event) {
 $(document).on('click', '.foods', function () {
 	console.log(this);
 	console.log(this.id);
+	
+	// clears the initial image of food 
 	$("#clearThis").html("");
+
 	var arrayOfGifDivs = []; // create for-loop for the GIF images coming in from the API call. 
 
 	// creates the URL to query the API dynamically 
     var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ this.id + "&api_key=dc6zaTOxFJmzC&limit=10";
     
     console.log(queryURL);
+    
+    // query to the API to get the image objects
     $.ajax({
       url: queryURL,
       method: 'GET'
     }).done(function(response) {
       console.log(response.data);
-      var responseData = response.data;
-      //pushes image to the HTML 
-      //need to make it so it pushes 10 images to the HTML
-      // $('#clickedTopic').attr('src', response.data[0].images.original_still.url)
+      
+      // saves variable with all the response data
 
+      var responseData = response.data;
+      
+      // Loop to go thru the 10 images queried from the API
       for (var j=0; j < 10; j++) {
 
+      	// var to hold the DIV created with the GIFs
       	var gifDiv = $("<div class='item'>");
 
       	var rating = responseData[j].rating; 
       	//console.log(rating);
       	var p = $("<p>").text("Rating: " + rating);
 
+      	// var created to hold all the attributes to the images being loaded
       	var topicImage = $("<img class='pause'>");
       	topicImage.attr("src", responseData[j].images.original_still.url) 
       	topicImage.attr("data-still", responseData[j].images.original_still.url)
@@ -67,13 +75,18 @@ $(document).on('click', '.foods', function () {
       	gifDiv.prepend(p);
       	gifDiv.prepend(topicImage);
       	arrayOfGifDivs.push(gifDiv)
+      	
+      	// pushes the images to the HTML
       	$("#gifs-appear").prepend(gifDiv);
       	console.log(gifDiv);
       }
 
       // allows for user to click the GIF. initial state of Still then to Animate. Click again to Still.
       $(".pause").on("click", function () {
+      	// variable that sets the initial state of the GIF
       	var state = $(this).attr("data-state");
+      	
+      	// if/else statement so the still can animate on click and the Animated can Still on click.
       	if (state == "still") {
       		$(this).attr("src", $(this).data("animate"));
       		$(this).attr("data-state", "animate");
