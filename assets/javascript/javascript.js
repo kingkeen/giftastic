@@ -31,37 +31,37 @@ $("#addTopic").on("click", function(event) {
 $(document).on('click', '.foods', function () {
 	console.log(this);
 	console.log(this.id)
-	var arrayOfGifDivs = [];
+	var arrayOfGifDivs = []; // create for-loop for the GIF images coming in from the API call. 
 
 	// creates the URL to query the API dynamically 
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ this.id + "&api_key=dc6zaTOxFJmzC&LIMIT=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+ this.id + "&api_key=dc6zaTOxFJmzC&limit=10";
     
     console.log(queryURL);
     $.ajax({
       url: queryURL,
       method: 'GET'
     }).done(function(response) {
-      console.log(response.data[0]);
-      var responseData = response.data[0];
+      console.log(response.data);
+      var responseData = response.data;
       //pushes image to the HTML 
       //need to make it so it pushes 10 images to the HTML
       // $('#clickedTopic').attr('src', response.data[0].images.original_still.url)
 
-      for (var j=0; j < responseData.length; j++) {
+      for (var j=0; j < 10; j++) {
 
       	var gifDiv = $("<div class='item'>");
 
       	var rating = responseData[j].rating; //check this
-
+      	console.log(rating);
       	var p = $("<p>").text("Rating: " + rating);
 
-      	var topicImage = $("<img>");
+      	var topicImage = $("<img class='pause'>");
       	topicImage.attr("src", responseData[j].images.fixed_height.url) //check this
 
       	gifDiv.prepend(p);
       	gifDiv.prepend(topicImage);
       	arrayOfGifDivs.push(gifDiv)
-      	// $("#gifs-appear-here-div").prepend(gifDiv);
+      	$("#gifs-appear").prepend(gifDiv);
       }
 
 

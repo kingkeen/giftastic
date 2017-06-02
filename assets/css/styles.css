@@ -13,3 +13,9 @@ h1 {
 #topic {
 	text-align: center;
 }
+
+.background {
+	background-image: url(../images/image.jpg);
+	color: blue;
+	text-shadow: 2px 2px yellow;
+}
